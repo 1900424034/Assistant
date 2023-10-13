@@ -1,0 +1,81 @@
+#项目端口
+server:
+  port: 6666
+
+
+#mysql链接
+spring:
+  profiles:
+    #配置运行环境  dev:开发环境  prod:生产环境
+    active: dev
+    #配置mysql数据连接池
+  datasource:
+    url: jdbc:mysql://192.168.3.2:3306/assistant?useUnicode=true&characterEncoding=utf8&serverTimezone=CTT&allowMultiQueries=true&autoReconnect=true&failOverReadOnly=false
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  sql:
+    init:
+      schema-locations: classpath:db/schema-h2.sql
+      data-locations: classpath:db/data-h2.sql
+  #配置redis连接池
+#  redis:
+#    host: 192.168.3.85
+#    password: youceTest
+#    port: 6300
+#    #数据库索引
+#    database: 12
+#    #连接超时时间
+#    timeout: 180000
+#    jedis:
+#      pool:
+#        max-active: 20
+#        max-idle: 8
+#        min-idle: 0
+#        max-wait: -1
+
+  #自定义扫描的xml文件地址
+  mapper-locations: classpath:mapper/*.xml
+  mvc:
+    pathmatch:
+      matching-strategy: extended
+
+
+
+
+#点选文字验证码配置
+aj:
+  captcha:
+    jigsaw: classpath:images/jigsaw
+    pic-click: classpath:images/pic-click  #底图路径，不配置将使用默认图片
+    cache-type: local # 缓存local/redis...
+    cache-number: 1000  # 缓存的阈值,达到这个值，清除缓存
+    timing-clear: 300   # 定时清除过期缓存(单位秒),设置为0代表不执行
+    type: clickword
+    slip-offset: 5      # 校验滑动拼图允许误差偏移量(默认5像素)
+    aes-status: true    # aes加密坐标开启或者禁用(true|false)
+    # https://tool.chinaz.com/tools/unicode.aspx 中文转Unicode
+    #    font-type: \u5b8b\u4f53  # 汉字统一使用Unicode,保证程序通过@value读取到是中文，可通过这个在线转换
+    water-mark: #水印文字
+    interference-options: 2 # 滑动干扰项(0/1/2)
+    history-data-clear-enable: true #历史数据是否清除
+    req-frequency-limit-enable: true # 接口请求次数一分钟限制是否开启 true|false
+    req-get-lock-limit: 5       # 验证失败5次，get接口锁定
+    req-get-lock-seconds: 300   # 验证失败后，锁定时间间隔,s
+    req-get-minute-limit: 20    # get接口一分钟内请求数限制
+    req-check-minute-limit: 20  # check接口一分钟内请求数限制
+
+
+
+# Sa-Token 配置
+sa-token:
+  # Token名称
+  token-name: yctoken
+  # Token有效期
+  timeout: 2592000
+  activity-timeout: 1800
+  # Token风格
+  token-style: random-64
+  # 在多人登录同一账号时，是否共用一个token
+  is-share: true
+  check-same-token: true

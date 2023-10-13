@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- 日志级别从低到高分为TRACE < DEBUG < INFO < WARN < ERROR < FATAL，如果设置为WARN，则低于WARN的信息都不会输出 -->
+<!-- scan:当此属性设置为true时，配置文件如果发生改变，将会被重新加载，默认值为true -->
+<!-- scanPeriod:设置监测配置文件是否有修改的时间间隔，如果没有给出时间单位，默认单位是毫秒。当scan为true时，此属性生效。默认的时间间隔为1分钟。 -->
+<!-- debug:当此属性设置为true时，将打印出logback内部日志信息，实时查看logback运行状态。默认值为false。 -->
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+
+    <contextName>information</contextName>
+
+    <!-- 日志跟目录 -->
+    <property name="LOG_HOME" value="logs" />
+    <!-- 日志文件名称 -->
+   <property name="LOG_NAME" value="informationPlatform" />
+    <!-- 日志文件编码 -->
+    <property name="LOG_CHARSET" value="utf-8" />
+    <!-- 配置日志的滚动时间，保存时间为15天-->
+    <property name="MAX_HISTORY" value="7" />
+    <!-- 文件大小，默认为10MB-->
+    <property name="MAX_FILE_SIZE" value="10" />
+    <!--日志控制台输出样式-->
+    <property name="LOG_CONSOLE_PATTERN" value="%black(%contextName-) %red(%d{yyyy-MM-dd HH:mm:ss}) %green([%thread]) %highlight(%-5level) %boldMagenta(%logger{36}) ---->> %white(%msg%n)"/>
+    <!--日志嗯输出样式-->
+    <property name="LOG_FILE_PATTERN" value="%contextName- %d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} ---->> %msg%n" />
+
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <!--用来指定日志展示格式-->
+        <encoder>
+             <!-- 用来展示日志的级别信息格式(日志输出样式)-->
+             <pattern>${LOG_CONSOLE_PATTERN}</pattern>
+             <!--编码格式Utf-8-->
+             <charset>${LOG_CHARSET}</charset>
+        </encoder>
+    </appender>
+
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+    </root>
+</configuration>
