@@ -4,6 +4,9 @@ package com.zq.assistant.controller;
 import com.anji.captcha.model.common.ResponseModel;
 import com.anji.captcha.model.vo.CaptchaVO;
 import com.anji.captcha.service.CaptchaService;
+import com.zq.assistant.entity.Users;
+import com.zq.assistant.service.UsersService;
+import com.zq.assistant.utils.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author zq
@@ -25,6 +28,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/users")
 public class UsersController {
+    @Autowired
+    private UsersService usersService;
 
     @Autowired
     private CaptchaService captchaService;
@@ -47,5 +52,14 @@ public class UsersController {
         return check;
     }
 
+    /**
+     * 注册
+     */
+    @PostMapping("/register")
+    public Result register(@RequestBody Users user) {
+        usersService.save(user);
+        System.out.println(user);
+        return new Result(0,"注册成功");
+    }
 }
 

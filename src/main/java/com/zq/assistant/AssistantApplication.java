@@ -1,12 +1,6 @@
 package com.zq.assistant;
 
-import com.baomidou.mybatisplus.annotation.DbType;
-import com.baomidou.mybatisplus.generator.AutoGenerator;
-import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
-import com.baomidou.mybatisplus.generator.config.GlobalConfig;
-import com.baomidou.mybatisplus.generator.config.PackageConfig;
-import com.baomidou.mybatisplus.generator.config.StrategyConfig;
-import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
+//s
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -36,7 +30,7 @@ public class AssistantApplication {
 //
 //        // 3、数据源配置
 //        DataSourceConfig dsc = new DataSourceConfig();
-//        dsc.setUrl("jdbc:mysql://192.168.3.2:3306/assistant?useUnicode=true&characterEncoding=utf8&serverTimezone=CTT");
+//        dsc.setUrl("jdbc:mysql://localhost:3306/assistant?useUnicode=true&characterEncoding=utf8&serverTimezone=CTT");
 //        dsc.setDriverName("com.mysql.cj.jdbc.Driver");
 //        dsc.setUsername("root");
 //        dsc.setPassword("123456");

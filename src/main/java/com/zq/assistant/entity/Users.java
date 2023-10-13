@@ -1,15 +1,19 @@
 package com.zq.assistant.entity;
 
 import java.time.LocalDateTime;
-import com.baomidou.mybatisplus.annotation.TableLogic;
+
+import com.baomidou.mybatisplus.annotation.*;
+
 import java.io.Serializable;
+import java.util.Date;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author zq
@@ -20,12 +24,13 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class Users implements Serializable {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
     /**
      * 用户ID
      */
-      private Integer id;
+    @TableId(value = "id", type = IdType.AUTO)
+    private Integer id;
 
     /**
      * 用户名
@@ -56,17 +61,19 @@ public class Users implements Serializable {
      * 是否删除：0-未删除；1-已删除
      */
     @TableLogic
-    private Integer isDeleted;
+    private Integer isDeleted = 0;
 
     /**
      * 创建时间
      */
-    private LocalDateTime createdAt;
+    @TableField(fill = FieldFill.INSERT)
+    private Date createdAt;
 
     /**
      * 更新时间
      */
-    private LocalDateTime updatedAt;
+    @TableField(fill = FieldFill.INSERT_UPDATE)
+    private Date updatedAt;
 
 
 }

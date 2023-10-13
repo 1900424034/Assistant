@@ -1,6 +1,6 @@
 #项目端口
 server:
-  port: 6666
+  port: 7777
 
 
 #mysql链接
@@ -10,7 +10,7 @@ spring:
     active: dev
     #配置mysql数据连接池
   datasource:
-    url: jdbc:mysql://192.168.3.2:3306/assistant?useUnicode=true&characterEncoding=utf8&serverTimezone=CTT&allowMultiQueries=true&autoReconnect=true&failOverReadOnly=false
+    url: jdbc:mysql://localhost:3306/assistant?useUnicode=true&characterEncoding=utf8&serverTimezone=CTT
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
